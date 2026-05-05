@@ -13,10 +13,16 @@ def lambda_handler(event, context):
 
         return {
             'statusCode': 200,
+            'headers': {
+                'Access-Control-Allow-Origin': '*'
+            },
             'body': json.dumps(items, ensure_ascii=False)
         }
     except Exception as e:
         return {
-            'statusCode': 200,
+            'statusCode': 500,
+            'headers': {
+                'Access-Control-Allow-Origin': '*'  # こちらにも追加推奨
+            },
             'body': json.dumps(f'エラー:{str(e)}')
         }
